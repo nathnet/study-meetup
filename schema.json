@@ -1,0 +1,11 @@
+{
+    "_id":"email id",
+   "name":"",
+   "course": "",
+   "join_info":
+   {
+       "date":"",
+       "time:":""
+   },
+   "participants":[]
+}
