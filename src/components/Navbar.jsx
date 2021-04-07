@@ -1,61 +1,56 @@
 import React from 'react';
-import 
-{
-    AppBar, 
-    Toolbar, 
-    Typography, 
-    // Button, 
-    IconButton, 
-    Menu, 
-    MenuItem
+import {
+    AppBar,
+    Toolbar,
+    Typography,
+    IconButton,
+    MenuItem,
+    SwipeableDrawer
 } from '@material-ui/core'
-import {useStyles} from '../styles/Navbar.js'
+import { useStyles } from '../styles/Navbar.js'
 import MenuIcon from '@material-ui/icons/Menu';
 
-const Navbar = () => 
-{
+const Navbar = () => {
     const classes = useStyles()
     const [anchorEl, setAnchorEl] = React.useState(null);
 
-    const handleClick = (event) => setAnchorEl(event.currentTarget);
-    const handleClose = () => setAnchorEl(null);
+    const handleClick = (event) => setAnchorEl(!anchorEl);
+    const handleClose = () => setAnchorEl(false);
 
     const MENU =
-    [
-        {
-            link:"host",
-            name:" Host a session"
-        },
-        {
-            link:"sessions",
-            name:" Join a session"
-        },
-    ]
+        [
+            {
+                link: "host",
+                name: " Host a session"
+            },
+            {
+                link: "sessions",
+                name: " Join a session"
+            },
+        ]
 
     return (
         <div className='Navbar'>
             <AppBar position="static">
                 <Toolbar variant="dense">
-                    
+
                     <IconButton edge="start" onClick={handleClick} className={classes.menuButton} color="inherit" aria-label="menu">
-                    <MenuIcon/>
+                        <MenuIcon />
                     </IconButton>
-                        <Menu
-                        id="simple-menu"
-                        anchorEl={anchorEl}
-                        keepMounted
-                        open={Boolean(anchorEl)}
+                    <SwipeableDrawer
+
+                        anchor='left'
+                        open={anchorEl}
                         onClose={handleClose}
-                        >
-
+                        onOpen={handleClick}
+                    >
                         {
-                            MENU.map(item =><a href={`/${item.link}`}><MenuItem onClick={handleClose}>{item.name}</MenuItem></a>)
+                            MENU.map(item => <a href={`/${item.link}`}><MenuItem onClick={handleClose}>{item.name}</MenuItem></a>)
                         }
+                    </SwipeableDrawer>
 
-                        </Menu>
-                    
                     <Typography variant="h6" color="inherit">
-                    Study App
+                        Study App
                     </Typography>
                 </Toolbar>
             </AppBar>
