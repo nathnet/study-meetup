@@ -6,8 +6,8 @@ import HomePage from "./pages/HomePage";
 const App = () => {
   return (
     <div className="App">
-      <Navbar />
       <Router>
+        <Navbar />
         <Switch>
           <Route path="/sessions" exact component={Sessions} />
           <Route path="/host" exact component={HostSession} />
